@@ -24,27 +24,37 @@ class AdaptiveNavigation extends StatelessWidget {
       builder: (context, dimens) {
         // Tablet Layout
         // Add maxWidth constraint check
+        if (dimens.maxWidth >= 600) {
+          return Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
+                  extended: dimens.maxWidth >= 800,
+                  minExtendedWidth: 180,
+                  destinations: destinations
+                      .map((e) => NavigationRailDestination(
+                            icon: e.icon,
+                            label: Text(e.label),
+                          ))
+                      .toList(),
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: onDestinationSelected,
+                ),
+                Expanded(child: child),
+              ],
+            ),
+          );
+        }
+
+        // Add closing curly bracket
         return Scaffold(
-          body: Row(
-            children: [
-              NavigationRail(
-                extended: dimens.maxWidth >= 800,
-                minExtendedWidth: 180,
-                destinations: destinations
-                    .map((e) => NavigationRailDestination(
-                          icon: e.icon,
-                          label: Text(e.label),
-                        ))
-                    .toList(),
-                selectedIndex: selectedIndex,
-                onDestinationSelected: onDestinationSelected,
-              ),
-              Expanded(child: child),
-            ],
+          body: child,
+          bottomNavigationBar: NavigationBar(
+            destinations: destinations,
+            selectedIndex: selectedIndex,
+            onDestinationSelected: onDestinationSelected,
           ),
         );
-        // Add closing curly bracket
-
         // Add return for mobile layout
       },
     );
