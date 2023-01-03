@@ -28,6 +28,12 @@ class _OutlinedCardState extends State<OutlinedCard> {
       child: Container(
         // Add box decoration here
         child: widget.child,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outline,
+            width: 1,
+          ),
+        ),
       ),
     );
   }
