@@ -6,4 +6,4 @@
 
 这是个界面基本完整的 music app，参考价值挺大的。
 
-它的导航用 GoRouter 做的。 
+它的导航用 GoRouter 做的。https://pub.dev/packages/go_router
